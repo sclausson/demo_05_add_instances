@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "03_add_instances",
+    "Description": "05_add_instances",
     "Metadata": {
 
     },
