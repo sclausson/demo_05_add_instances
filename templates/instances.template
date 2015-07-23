@@ -53,7 +53,8 @@
           "KeyName" : { "Ref" : "KeyName" },
           "ImageId" : { "Fn::FindInMap" : [ "Region2Ami", { "Ref" : "AWS::Region" }, "AMI" ] },
           "InstanceType" : { "Ref" : "InstanceType" },
-          "SubnetId" : { "Ref" : "Az1PublicSubnetId"}
+          "SubnetId" : { "Ref" : "Az1PublicSubnetId"},
+          "Tags" : [ { "Key" : "Name", "Value" : "Az1PublicInstance"  } ]
         }
       },
       "Az2PublicInstance" : {
@@ -62,7 +63,8 @@
           "KeyName" : { "Ref" : "KeyName" },
           "ImageId" : { "Fn::FindInMap" : [ "Region2Ami", { "Ref" : "AWS::Region" }, "AMI" ] },
           "InstanceType" : { "Ref" : "InstanceType" },
-          "SubnetId" : { "Ref" : "Az2PublicSubnetId"}
+          "SubnetId" : { "Ref" : "Az2PublicSubnetId"},
+          "Tags" : [ { "Key" : "Name", "Value" : "Az2PublicInstance"  } ]
         }
       },
       "Az1PrivateInstance" : {
@@ -71,7 +73,8 @@
           "KeyName" : { "Ref" : "KeyName" },
           "ImageId" : { "Fn::FindInMap" : [ "Region2Ami", { "Ref" : "AWS::Region" }, "AMI" ] },
           "InstanceType" : { "Ref" : "InstanceType" },
-          "SubnetId" : { "Ref" : "Az1PrivateSubnetId"}
+          "SubnetId" : { "Ref" : "Az1PrivateSubnetId"},
+          "Tags" : [ { "Key" : "Name", "Value" : "Az1PrivateInstance"  } ]
         }
       },
       "Az2PrivateInstance" : {
@@ -80,7 +83,8 @@
           "KeyName" : { "Ref" : "KeyName" },
           "ImageId" : { "Fn::FindInMap" : [ "Region2Ami", { "Ref" : "AWS::Region" }, "AMI" ] },
           "InstanceType" : { "Ref" : "InstanceType" },
-          "SubnetId" : { "Ref" : "Az2PrivateSubnetId"}
+          "SubnetId" : { "Ref" : "Az2PrivateSubnetId"},
+          "Tags" : [ { "Key" : "Name", "Value" : "Az2PrivateInstance"  } ]
         }
       }
     },
