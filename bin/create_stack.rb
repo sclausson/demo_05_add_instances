@@ -45,3 +45,4 @@ until cfn.stacks[@opts[:stackname]].status == "CREATE_COMPLETE"
   sleep 5
 end
 
+puts ""
