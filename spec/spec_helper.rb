@@ -18,10 +18,14 @@ host = ENV['TARGET_HOST']
 
 options = Net::SSH::Config.for(host)
 
-options[:user] ||= Etc.getlogin
+options[:user] ||= "ec2-user"
+options[:port] = 22
+options[:keys] = "/root/.ssh/jenkins.pem"
+options[:host_name] = host
 
 set :host,        options[:host_name] || host
 set :ssh_options, options
+set :request_pty, true
 
 # Disable sudo
 # set :disable_sudo, true
