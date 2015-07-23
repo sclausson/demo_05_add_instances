@@ -1,0 +1,91 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "03_add_instances",
+    "Metadata": {
+
+    },
+    "Parameters": {
+      "KeyName" : {
+        "Type" : "AWS::EC2::KeyPair::KeyName",
+        "Description" : "Name of the keypair used to access the instances"
+      },
+      "InstanceType" : {
+        "Type" : "String",
+        "Description" : "Instance Type for all instances"
+      },
+      "VpcId" : {
+        "Type" : "String",
+        "Description" : "VPC where all of this will be deployed"
+      },
+      "Az1PublicSubnetId" : {
+        "Type" : "String",
+        "Description" : "SubnetId for Az1 Public Subnet"
+      },
+       "Az2PublicSubnetId" : {
+        "Type" : "String",
+        "Description" : "SubnetId for Az2 Public Subnet"
+      },
+       "Az1PrivateSubnetId" : {
+        "Type" : "String",
+        "Description" : "SubnetId for Az1 Private Subnet"
+      },
+      "Az2PrivateSubnetId" : {
+        "Type" : "String",
+        "Description" : "SubnetId for Az2 Private Subnet"
+      }
+    },
+    "Mappings": {
+      "Region2Ami" : {
+        "us-east-1" : { "AMI" : "ami-1ecae776"},
+        "us-west-1" : { "AMI" : "ami-e7527ed7"},
+        "us-west-2" : { "AMI" : "ami-d114f295"},
+        "eu-west-1" : { "AMI" : "ami-a10897d6"},
+        "eu-central-1" : { "AMI" : "ami-a8221fb5"}
+      }
+    },
+    "Conditions": {
+
+    },
+    "Resources": {
+      "Az1PublicInstance" : {
+        "Type" : "AWS::EC2::Instance",
+        "Properties" : {
+          "KeyName" : { "Ref" : "KeyName" },
+          "ImageId" : { "Fn::FindInMap" : [ "Region2Ami", { "Ref" : "AWS::Region" }, "AMI" ] },
+          "InstanceType" : { "Ref" : "InstanceType" },
+          "SubnetId" : { "Ref" : "Az1PublicSubnetId"}
+        }
+      },
+      "Az2PublicInstance" : {
+        "Type" : "AWS::EC2::Instance",
+        "Properties" : {
+          "KeyName" : { "Ref" : "KeyName" },
+          "ImageId" : { "Fn::FindInMap" : [ "Region2Ami", { "Ref" : "AWS::Region" }, "AMI" ] },
+          "InstanceType" : { "Ref" : "InstanceType" },
+          "SubnetId" : { "Ref" : "Az2PublicSubnetId"}
+        }
+      },
+      "Az1PrivateInstance" : {
+        "Type" : "AWS::EC2::Instance",
+        "Properties" : {
+          "KeyName" : { "Ref" : "KeyName" },
+          "ImageId" : { "Fn::FindInMap" : [ "Region2Ami", { "Ref" : "AWS::Region" }, "AMI" ] },
+          "InstanceType" : { "Ref" : "InstanceType" },
+          "SubnetId" : { "Ref" : "Az1PrivateSubnetId"}
+        }
+      },
+      "Az2PrivateInstance" : {
+        "Type" : "AWS::EC2::Instance",
+        "Properties" : {
+          "KeyName" : { "Ref" : "KeyName" },
+          "ImageId" : { "Fn::FindInMap" : [ "Region2Ami", { "Ref" : "AWS::Region" }, "AMI" ] },
+          "InstanceType" : { "Ref" : "InstanceType" },
+          "SubnetId" : { "Ref" : "Az2PrivateSubnetId"}
+        }
+      }
+    },
+    "Outputs": {
+
+    }
+}
+    
